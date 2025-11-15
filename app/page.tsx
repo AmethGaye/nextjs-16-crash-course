@@ -1,10 +1,13 @@
 import EventCard from "@/components/EventCard"
 import ExploreBtn from "@/components/ExploreBtn"
-import {events} from "@/lib/constants"
+import {IEvent} from "@/database";
 
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-function HomePage() {
-  console.log("What type of a component am I ?")
+async function HomePage() {
+  const response = await fetch(`${BASE_URL}/api/events`);
+  const {events} = await response.json();
+
   return (
     <section>
       <h1 className= "text-center">The hub for Every Dev <br/> Event You Can&apos;t Miss</h1>
@@ -16,7 +19,7 @@ function HomePage() {
         <h3>Featured Events</h3>
 
         <ul className="events">
-          {events.map((event) => (
+          {events && events.length > 0 && events.map((event : IEvent ) => (
             <li className="list-none" key={event.title}>
               <EventCard {...event} />
             </li>
