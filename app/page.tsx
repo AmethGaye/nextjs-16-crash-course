@@ -2,9 +2,6 @@
 // import events from "@/lib/constants";
 import ExploreBtn from "@/components/ExploreBtn"
 import EventCards from "@/components/EventCards"
-import { Suspense } from "react"
-
-
 
 async function HomePage() {
   
@@ -17,10 +14,7 @@ async function HomePage() {
 
         <div className="mt-20 space-y-7">
           <h3>Featured Events</h3>
-
-          <Suspense fallback={<div>Loading...</div>}>
             <EventCards />
-          </Suspense>
         </div>
       </section>
     )
