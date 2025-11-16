@@ -5,7 +5,7 @@ const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 
 const EventCards = async () => {
-    const response = await fetch(`${BASE_URL}/api/events`);
+    const response = await fetch(`${BASE_URL}/api/events`, { next: { revalidate: 60 }});
     const {events} = await response.json();
   return (
     <>
